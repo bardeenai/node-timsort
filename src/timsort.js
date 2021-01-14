@@ -908,10 +908,6 @@ class TimSort {
  *     comparator.
  */
 export function sort(array, compare, lo, hi) {
-  if (!Array.isArray(array)) {
-    throw new TypeError('Can only sort arrays');
-  }
-
   /*
    * Handle the case where a comparison function is not provided. We do
    * lexicographic sorting

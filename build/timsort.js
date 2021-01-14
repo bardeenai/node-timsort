@@ -1,18 +1,18 @@
 /****
  * The MIT License
- *
+ * 
  * Copyright (c) 2015 Marco Ziccardi
- *
+ * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,7 +20,7 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- *
+ * 
  ****/
 (function (global, factory) {
   if (typeof define === 'function' && define.amd) {
@@ -40,11 +40,7 @@
   exports.__esModule = true;
   exports.sort = sort;
 
-  function _classCallCheck(instance, Constructor) {
-    if (!(instance instanceof Constructor)) {
-      throw new TypeError('Cannot call a class as a function');
-    }
-  }
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
   var DEFAULT_MIN_MERGE = 32;
 
@@ -158,10 +154,10 @@
 
       reverseRun(array, lo, runHi);
     } else {
-      while (runHi < hi && compare(array[runHi], array[runHi - 1]) >= 0) {
-        runHi++;
+        while (runHi < hi && compare(array[runHi], array[runHi - 1]) >= 0) {
+          runHi++;
+        }
       }
-    }
 
     return runHi - lo;
   }
@@ -244,23 +240,23 @@
       lastOffset += hint;
       offset += hint;
     } else {
-      maxOffset = hint + 1;
-      while (offset < maxOffset && compare(value, array[start + hint - offset]) <= 0) {
-        lastOffset = offset;
-        offset = (offset << 1) + 1;
+        maxOffset = hint + 1;
+        while (offset < maxOffset && compare(value, array[start + hint - offset]) <= 0) {
+          lastOffset = offset;
+          offset = (offset << 1) + 1;
 
-        if (offset <= 0) {
+          if (offset <= 0) {
+            offset = maxOffset;
+          }
+        }
+        if (offset > maxOffset) {
           offset = maxOffset;
         }
-      }
-      if (offset > maxOffset) {
-        offset = maxOffset;
-      }
 
-      var tmp = lastOffset;
-      lastOffset = hint - offset;
-      offset = hint - tmp;
-    }
+        var tmp = lastOffset;
+        lastOffset = hint - offset;
+        offset = hint - tmp;
+      }
 
     lastOffset++;
     while (lastOffset < offset) {
@@ -300,24 +296,24 @@
       lastOffset = hint - offset;
       offset = hint - tmp;
     } else {
-      maxOffset = length - hint;
+        maxOffset = length - hint;
 
-      while (offset < maxOffset && compare(value, array[start + hint + offset]) >= 0) {
-        lastOffset = offset;
-        offset = (offset << 1) + 1;
+        while (offset < maxOffset && compare(value, array[start + hint + offset]) >= 0) {
+          lastOffset = offset;
+          offset = (offset << 1) + 1;
 
-        if (offset <= 0) {
+          if (offset <= 0) {
+            offset = maxOffset;
+          }
+        }
+
+        if (offset > maxOffset) {
           offset = maxOffset;
         }
-      }
 
-      if (offset > maxOffset) {
-        offset = maxOffset;
+        lastOffset += hint;
+        offset += hint;
       }
-
-      lastOffset += hint;
-      offset += hint;
-    }
 
     lastOffset++;
 
@@ -754,10 +750,6 @@
   })();
 
   function sort(array, compare, lo, hi) {
-    if (!Array.isArray(array)) {
-      throw new TypeError('Can only sort arrays');
-    }
-
     if (!compare) {
       compare = alphabeticalCompare;
     } else if (typeof compare !== 'function') {
